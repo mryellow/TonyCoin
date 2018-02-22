@@ -8,6 +8,10 @@
   },
   "author": "Mr-Yellow",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mryellow/TonyCoin.git"
+  },
   "dependencies": {
     "zeppelin-solidity": "^1.6.0"
   },
