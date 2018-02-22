@@ -5,7 +5,6 @@ module.exports = function (deployer, network, accounts) {
   var heartbeatTimeout = 60 * 60 * 24 * 30 * 3; // 3 Months
 
   if (network === 'live') {
-    // TODO: Deploy EthercraftFarm
     console.log('Live deploy');
     deployer.deploy(TonyCoin, cap, heartbeatTimeout);
   } else {
