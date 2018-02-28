@@ -2,6 +2,10 @@
 
 A birthday present for perpetuity. Capped (as there can be only one Tony), Heritable, Mintable token.
 
+## TODO
+
+* [ ] Contactable?
+
 ## Roll-out
 
 * [ ] `mint(address _to, uint256 _amount)` coin for Tony.
@@ -15,7 +19,7 @@ A birthday present for perpetuity. Capped (as there can be only one Tony), Herit
 
 ### ABI
 
-Using this definition [MyEtherWallet](https://www.myetherwallet.com/) can be used to call functions.
+Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) can be used to call functions.
 
 ```
 [

@@ -56,4 +56,22 @@ contract('TonyCoin', function (accounts) {
     });
   });
 
+  it('should have a supply of 1', function () {
+    return metaCoin.totalSupply.call().then(function (res) {
+      assert.equal(res.toNumber(), 1, "1 wasn't the supply");
+    });
+  });
+
+  it('should have a balance of 1', function () {
+    return metaCoin.balanceOf.call(accounts[1]).then(function (res) {
+      assert.equal(res.toNumber(), 1, "1 wasn't the balance");
+    });
+  });
+
+  it('should have a balance of 0', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (res) {
+      assert.equal(res.toNumber(), 0, "0 wasn't the balance");
+    });
+  });
+
 });
