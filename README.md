@@ -336,12 +336,7 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "name": "_cap",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
