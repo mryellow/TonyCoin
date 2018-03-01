@@ -2,6 +2,8 @@
 
 A birthday present for perpetuity. Capped (as there can be only one Tony), Mintable token.
 
+Transfer restricted so that Tony must always hodl at least 50% of himself.
+
 ## Roll-out
 
 * [x] `mint(address _to, uint256 _amount)` coin for Tony.
