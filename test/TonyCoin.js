@@ -33,12 +33,6 @@ contract('TonyCoin', function (accounts) {
     });
   });
 
-  it('has an heir', function () {
-    return metaCoin.heir().then(function (res) {
-      assert.equal(res, '0x0000000000000000000000000000000000000000', "wasn't 0x0");
-    });
-  });
-
   it('has an owner', function () {
     return metaCoin.owner().then(function (res) {
       assert.equal(res, beneficiary.toLowerCase(), "wasn't second account");

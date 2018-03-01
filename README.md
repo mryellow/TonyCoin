@@ -1,6 +1,6 @@
 # TonyCoin
 
-A birthday present for perpetuity. Capped (as there can be only one Tony), Heritable, Mintable token.
+A birthday present for perpetuity. Capped (as there can be only one Tony), Mintable token.
 
 ## Roll-out
 
@@ -18,12 +18,6 @@ https://ropsten.etherscan.io/address/0xf72331f3d0fc39225d625c41bb612ace2ddbc637
 ### Mainnet
 
 https://etherscan.io/address/##TODO##
-
-## Heritability
-
-* First an Heir can be set with `setHeir(address newHeir)`.
-* The current owner can send a `heartbeat()` which will lock out heir for 3 months.
-* Once timeout is reached heir can send `proclaimDeath()` and `claimHeirOwnership()`.
 
 ### ABI
 
@@ -98,15 +92,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
   },
   {
     "constant": false,
-    "inputs": [],
-    "name": "claimHeirOwnership",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
     "inputs": [
       {
         "name": "_from",
@@ -128,29 +113,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
         "type": "bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "newHeir",
-        "type": "address"
-      }
-    ],
-    "name": "setHeir",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "proclaimDeath",
-    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -181,15 +143,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
     ],
     "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [],
-    "name": "heartbeat",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -258,20 +211,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "heartbeatTimeout",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "constant": false,
     "inputs": [],
     "name": "finishMinting",
@@ -289,20 +228,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
     "constant": true,
     "inputs": [],
     "name": "owner",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "heir",
     "outputs": [
       {
         "name": "",
@@ -348,20 +273,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "timeOfDeath",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -412,15 +323,6 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
   },
   {
     "constant": false,
-    "inputs": [],
-    "name": "removeHeir",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
     "inputs": [
       {
         "name": "newOwner",
@@ -438,83 +340,11 @@ Using this definition [MyEtherWallet](https://www.myetherwallet.com/#contracts) 
       {
         "name": "_cap",
         "type": "uint256"
-      },
-      {
-        "name": "_heartbeatTimeout",
-        "type": "uint256"
       }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "newHeir",
-        "type": "address"
-      }
-    ],
-    "name": "HeirChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "owner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnerHeartbeated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "owner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "heir",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "timeOfDeath",
-        "type": "uint256"
-      }
-    ],
-    "name": "OwnerProclaimedDead",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "HeirOwnershipClaimed",
-    "type": "event"
   },
   {
     "anonymous": false,
