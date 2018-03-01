@@ -2,16 +2,24 @@
 
 A birthday present for perpetuity. Capped (as there can be only one Tony), Heritable, Mintable token.
 
-## TODO
-
-* [ ] Contactable?
-
 ## Roll-out
 
-* [ ] `mint(address _to, uint256 _amount)` coin for Tony.
-* [ ] `transferOwnership(address newOwner)` to Tony.
+* [x] `mint(address _to, uint256 _amount)` coin for Tony.
+* [x] `transferOwnership(address newOwner)` to Tony.
 
-## Inheritance
+## Verification
+
+`solidity_flattener --solc-paths=zeppelin-solidity=/home/full/path/to/TonyCoin/node_modules/zeppelin-solidity TonyCoin.sol`
+
+### Testnet
+
+https://ropsten.etherscan.io/address/0xf72331f3d0fc39225d625c41bb612ace2ddbc637
+
+### Mainnet
+
+https://etherscan.io/address/##TODO##
+
+## Heritability
 
 * First an Heir can be set with `setHeir(address newHeir)`.
 * The current owner can send a `heartbeat()` which will lock out heir for 3 months.

@@ -4,6 +4,7 @@ pragma solidity ^0.4.18;
 import 'zeppelin-solidity/contracts/ownership/Heritable.sol';
 import 'zeppelin-solidity/contracts/token/ERC20/CappedToken.sol';
 
+// A birthday present for perpetuity. Capped (as there can be only one Tony), Heritable, Mintable token.
 contract TonyCoin is CappedToken, Heritable {
     string public constant name = "TonyCoin"; // solium-disable-line uppercase
     string public constant symbol = "TNY"; // solium-disable-line uppercase
