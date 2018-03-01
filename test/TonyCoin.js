@@ -35,7 +35,7 @@ contract('TonyCoin', function (accounts) {
 
   it('has an owner', function () {
     return metaCoin.owner().then(function (res) {
-      assert.equal(res, beneficiary.toLowerCase(), "wasn't second account");
+      assert.equal(res, accounts[0], "wasn't first account");
     });
   });
 
@@ -64,16 +64,84 @@ contract('TonyCoin', function (accounts) {
     });
   });
 
-  it('should have a balance of 1 in beneficiary', function () {
-    return metaCoin.balanceOf.call(beneficiary).then(function (res) {
+  it('should have a balance of 1 in account 0', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (res) {
       assert.equal(res.toNumber(), 1e+18, "1 wasn't the balance");
     });
   });
 
-  it('should have a balance of 0 in account 0', function () {
-    return metaCoin.balanceOf.call(accounts[0]).then(function (res) {
+  it('should have a balance of 0 in account 1', function () {
+    return metaCoin.balanceOf.call(accounts[1]).then(function (res) {
       assert.equal(res.toNumber(), 0, "0 wasn't the balance");
     });
   });
+
+  it('should fail attempting to transfer away over half', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (balance) {
+      return metaCoin.transfer(accounts[1], balance.toNumber() - (1e+18 / 2));
+    }).then(function (res) {
+      assert.notEqual(res.receipt.status, 1);
+    }).catch(function (err) {
+      assert.equal(err, 'Error: VM Exception while processing transaction: revert');
+    });
+  });
+
+  it('should fail attempting to transfer away over half', function () {
+    return metaCoin.approve(accounts[1], 1e+18).then(function () {
+      return metaCoin.balanceOf.call(accounts[0]);
+    }).then(function (balance) {
+      return metaCoin.transferFrom(accounts[0], accounts[1],
+        balance.toNumber() - (1e+18 / 2), { from: accounts[1] });
+    }).then(function (res) {
+      assert.notEqual(res.receipt.status, 1);
+    }).catch(function (err) {
+      assert.equal(err, 'Error: VM Exception while processing transaction: revert');
+    });
+  });
+
+  it('should succeed attempting to transfer away under half', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (balance) {
+      return metaCoin.transfer(accounts[1], balance.toNumber() - (1e+18 / 2) - 1000);
+    }).then(function (res) {
+      assert.equal(res.receipt.status, 1);
+    });
+  });
+
+  it('should succeed attempting to transfer away under half', function () {
+    return metaCoin.approve(accounts[1], 1e+18).then(function () {
+      return metaCoin.balanceOf.call(accounts[0]);
+    }).then(function (balance) {
+      return metaCoin.transferFrom(accounts[0], accounts[1],
+        balance.toNumber() - (1e+18 / 2) - 500, { from: accounts[1] });
+    }).then(function (res) {
+      assert.equal(res.receipt.status, 1);
+    });
+  });
+
+  /*
+  it('should fail attempting to transfer over half', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (balance) {
+      return metaCoin.transferFrom(accounts[0], accounts[1], balance / 2);
+    }).catch(function (err) {
+      assert.equal(err, 'Error: VM Exception while processing transaction: revert');
+    });
+  });
+
+  it('should succeed attempting to transfer under half', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (balance) {
+      return metaCoin.transfer(accounts[1], (balance / 2) - 1);
+    }).then(function (res) {
+      assert.equal(res.receipt.status, 1);
+    });
+  });
+
+  it('should succeed attempting to transfer under half', function () {
+    return metaCoin.balanceOf.call(accounts[0]).then(function (balance) {
+      return metaCoin.transferFrom(accounts[0], accounts[1], (balance / 2) - 1)
+    }).then(function (res) {
+      assert.equal(res.receipt.status, 1);
+    });
+  });
+  */
 
 });
