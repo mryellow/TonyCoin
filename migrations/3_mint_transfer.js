@@ -4,7 +4,7 @@ module.exports = function (deployer, network, accounts) {
   var beneficiary = '0x1a88124f1F338D55396a7d427C8c3ea96cb41e3e';
 
   var metaCoin;
-  if (network == 'live') {
+  if (network == 'mainnet') {
     deployer.then(function () {
       return TonyCoin.deployed();
     }).then(function (instance) {
